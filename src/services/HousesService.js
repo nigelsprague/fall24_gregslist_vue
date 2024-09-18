@@ -1,4 +1,3 @@
-import { logger } from "@/utils/Logger"
 import { api } from "./AxiosService"
 import { House } from "@/models/House"
 import { AppState } from "@/AppState"
