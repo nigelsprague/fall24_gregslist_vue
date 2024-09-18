@@ -15,4 +15,8 @@ export class House {
     this.creatorPicture = data.creator.picture
     
   }
+
+  get priceAsCurrency() {
+    return new Intl.NumberFormat('en-US', { style: 'currency', currency: 'USD' }).format(this.price)
+  }
 }
