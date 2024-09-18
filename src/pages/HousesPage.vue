@@ -1,10 +1,38 @@
 <script setup>
+import { AppState } from '@/AppState';
+import { housesService } from '@/services/HousesService';
+import { logger } from '@/utils/Logger';
+import Pop from '@/utils/Pop';
+import { computed, onMounted } from 'vue';
 
+
+const houses = computed(() => AppState.houses)
+
+onMounted(() => {
+  getCars()
+})
+
+async function getCars() {
+  try {
+    await housesService.getCars()
+  }
+  catch (error){
+    Pop.meow(error);
+    logger.error(error)
+  }
+}
 </script>
 
 
 <template>
-  <h1>Houses</h1>
+  <div class="container">
+    <section class="row">
+      <h1>Houses</h1>
+      <div v-for="house in houses" :key="house.id" class="col-md-6 mb-3">
+        {{ house }}
+      </div>
+    </section>
+  </div>
 </template>
 
 
